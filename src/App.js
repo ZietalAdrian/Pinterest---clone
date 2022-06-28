@@ -2,8 +2,9 @@ import { useState, useEffect } from "react";
 import "./App.css";
 import Board from "./components/Board";
 import Header from "./components/Header";
-import useSearchPins, { useRandomPins } from "./unsplash";
+import usePhotos from "./usePhotos";
 import Toast from "./components/Toast";
+import { PinContext } from "./context/PinContext";
 
 function App() {
   const [query, setQuery] = useState("");
@@ -12,6 +13,13 @@ function App() {
   const [toast, setToast] = useState(false);
   const [modal, setModal] = useState(false);
   const [login, setLogin] = useState(true);
+
+  const [pickedImg, setPickedImg] = useState(null);
+
+  const { images, setImages, setRandom, loading, error, hasMore } = usePhotos(
+    query,
+    page
+  );
 
   const handleScroll = (e) => {
     if (
@@ -26,13 +34,6 @@ function App() {
     window.addEventListener("scroll", handleScroll);
   });
 
-  const { images, hasMore, loading, error, setImages } = useSearchPins(
-    query,
-    page
-  );
-  const { randImg, loading2, error2, setRandom, random, setRandImg } =
-    useRandomPins();
-
   const onOpen = (bool) => {
     setModal(true);
     setLogin(bool);
@@ -40,8 +41,9 @@ function App() {
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
-    setRandom(false); 
-    setRandImg([]);
+    setRandom(false);
+    setPickedImg(null);
+
     setImages([]);
     setQuery(input);
     setPage(1);
@@ -49,38 +51,36 @@ function App() {
 
   return (
     <>
-      <Header
-        setInput={setInput}
-        setPage={setPage}
-        setImages={setImages}
-        setToast={setToast}
-        onOpen={onOpen}
-        onSearchSubmit={onSearchSubmit}
-        input={input}
-        modal={modal}
-        login={login}
-        setLogin={setLogin}
-        setModal={setModal}
-      />
-      <Board
-        pins={images}
-        setQuery={setQuery}
-        setPage={setPage}
-        setImages={setImages}
-        setInput={setInput}
-        onOpen={onOpen}
-        modal={modal}
-        setModal={setModal}
-        login={login}
-        setLogin={setLogin}
-        setToast={setToast}
-        loading={loading}
-        error={error}
-        hasMore={hasMore}
-        randImg={randImg.length !== 0 && randImg}
-        setRandom={setRandom}
-        random={random}
-      />
+      <PinContext.Provider
+        value={{
+          images,
+          setQuery,
+          setPage,
+          setImages,
+          setInput,
+          onOpen,
+          modal,
+          setModal,
+          login,
+          setLogin,
+          setToast,
+        }}
+      >
+        <Header
+          onSearchSubmit={onSearchSubmit}
+          input={input}
+          setRandom={setRandom}
+        />
+        {console.log(images)}
+        <Board
+          pins={images}
+          setPickedImg={setPickedImg}
+          pickedImg={pickedImg}
+          loading={loading}
+          error={error}
+          hasMore={hasMore}
+        />
+      </PinContext.Provider>
       <Toast toast={toast} setToast={setToast} />
     </>
   );

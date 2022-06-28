@@ -1,28 +1,32 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BsPinterest } from "react-icons/bs";
 import { GrFormSearch } from "react-icons/gr";
 import { RiArrowDownSLine } from "react-icons/ri";
 import AuthenticationBoard from "./AuthenticationBoard";
+import { PinContext } from "../context/PinContext";
 
-const Header = ({
-  setToast,
-  onSearchSubmit,
-  setInput,
-  onOpen,
-  setModal,
-  modal,
-  login,
-  setLogin,
-  input,
-}) => {
+const Header = ({ onSearchSubmit, input, randImg, setRandom }) => {
+  const {
+    setInput,
+    onOpen,
+    modal,
+    setModal,
+    login,
+    setLogin,
+    setToast,
+  } = useContext(PinContext);
+
   return (
     <div className="flex flex-col">
       <div className="flex m-4 items-center">
-        <span className="mx-2 cursor-pointer flex text-[#C8232C] font-semibold tracking-tight text-xl pb-1">
-          <button>
+        <span>
+          <button
+            onClick={()=> setRandom(true)}
+            className="mx-2 cursor-pointer flex text-[#C8232C] font-semibold tracking-tight text-xl pb-1"
+          >
             <BsPinterest size={25} color="#F00028" className="mr-1 pb-0" />
+            Pinterest
           </button>
-          Pinterest
         </span>
         <button
           onClick={() => setToast(true)}

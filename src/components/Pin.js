@@ -2,13 +2,10 @@ import React, { useEffect, useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
 import { AiFillMeh } from "react-icons/ai";
-import PinThumb from "./PinThumb";
 import AuthenticationBoard from "./AuthenticationBoard";
 
 const Pin = ({
   obj,
-  pins,
-  clickedPin,
   handleOnSearchTag,
   onOpen,
   modal,
@@ -16,9 +13,6 @@ const Pin = ({
   login,
   setLogin,
   setToast,
-  onClose,
-  randImg,
-  random
 }) => {
   const {
     alt,
@@ -27,8 +21,6 @@ const Pin = ({
     user,
     tags,
     description,
-    pickedImg,
-    show,
   } = obj;
 
   const [scroll, setScroll] = useState(false);
@@ -145,67 +137,6 @@ const Pin = ({
       <span className="block text-center font-semibold text-xl">
         Więcej w tym stylu
       </span>
-      {random ? (
-        <>
-          {!show ? (
-            <div className="gap-3 mt-4 mx-2 px-20 columns-5">
-              {randImg.map((obj, index) => {
-                return (
-                  <PinThumb
-                    handleOnSearchTag={handleOnSearchTag}
-                    key={index}
-                    obj={obj}
-                    clickedPin={clickedPin}
-                  />
-                );
-              })}
-            </div>
-          ) : (
-            <>
-              {pickedImg && (
-                <div>
-                  <Pin
-                    handleOnSearchTag={handleOnSearchTag}
-                    obj={pickedImg}
-                    pins={pins}
-                    clickedPin={clickedPin}
-                  />
-                </div>
-              )}
-            </>
-          )}
-        </>
-      ) : (
-        <>
-        {!show ? (
-          <div className="gap-3 mt-4 mx-2 px-20 columns-5">
-            {pins.map((obj, index) => {
-              return (
-                <PinThumb
-                  handleOnSearchTag={handleOnSearchTag}
-                  key={index}
-                  obj={obj}
-                  clickedPin={clickedPin}
-                />
-              );
-            })}
-          </div>
-        ) : (
-          <>
-            {pickedImg && (
-              <div>
-                <Pin
-                  handleOnSearchTag={handleOnSearchTag}
-                  obj={pickedImg}
-                  pins={pins}
-                  clickedPin={clickedPin}
-                />
-              </div>
-            )}
-          </>
-        )}
-      </>
-      )}
     </>
   );
 };
