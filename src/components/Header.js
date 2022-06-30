@@ -5,7 +5,14 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import AuthenticationBoard from "./AuthenticationBoard";
 import { PinContext } from "../context/PinContext";
 
-const Header = ({ onSearchSubmit, input, randImg, setRandom }) => {
+const Header = ({
+  onSearchSubmit,
+  input,
+  setRandom,
+  setPickedImg,
+  random,
+  setPage,
+}) => {
   const {
     setInput,
     onOpen,
@@ -14,14 +21,26 @@ const Header = ({ onSearchSubmit, input, randImg, setRandom }) => {
     login,
     setLogin,
     setToast,
+    setImages,
   } = useContext(PinContext);
+
+  const HomePage = () => {
+    setImages([]);
+    setPickedImg(null);
+    setInput("")
+    if (!random) {
+      setRandom(true);
+    } else {
+      setPage(2);
+    }
+  };
 
   return (
     <div className="flex flex-col">
       <div className="flex m-4 items-center">
         <span>
           <button
-            onClick={()=> setRandom(true)}
+            onClick={HomePage}
             className="mx-2 cursor-pointer flex text-[#C8232C] font-semibold tracking-tight text-xl pb-1"
           >
             <BsPinterest size={25} color="#F00028" className="mr-1 pb-0" />

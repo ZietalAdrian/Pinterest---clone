@@ -3,7 +3,15 @@ import { PinContext } from "../context/PinContext";
 import Pin from "./Pin";
 import Thumbs from "./Thumbs";
 
-const Board = ({ pins, setPickedImg, pickedImg, loading, error, hasMore }) => {
+const Board = ({
+  pins,
+  setPickedImg,
+  pickedImg,
+  loading,
+  error,
+  hasMore,
+  random,
+}) => {
   const { setInput, setImages, setQuery, setPage } = useContext(PinContext);
 
   const clickedPin = (id) => {
@@ -34,7 +42,7 @@ const Board = ({ pins, setPickedImg, pickedImg, loading, error, hasMore }) => {
       <div className="text-center pt-5 text-3xl">{loading && "Loading..."}</div>
       <div className="text-center pt-5 text-3xl">{error && error}</div>
       <div className="text-center pt-5 text-3xl my-10">
-        {!hasMore && "To już koniec Pinów tej kategorii"}
+        {!hasMore && !random && "To już koniec Pinów tej kategorii"}
       </div>
     </>
   );

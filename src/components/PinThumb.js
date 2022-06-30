@@ -25,9 +25,9 @@ const PinThumb = ({ obj, clickedPin, handleOnSearchTag }) => {
 
   return (
     <div
-      className={`rounded-xl cursor-pointer mt-3 first:mt-0`}
+      className={`flex flex-col rounded-xl cursor-pointer mt-3 first:mt-0`}
     >
-      <div>
+      <div className="mb-1">
         <img
           onClick={handleOnClick}
           className="h-full w-full first-letter: rounded-xl"

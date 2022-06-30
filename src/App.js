@@ -16,7 +16,7 @@ function App() {
 
   const [pickedImg, setPickedImg] = useState(null);
 
-  const { images, setImages, setRandom, loading, error, hasMore } = usePhotos(
+  const { images, setImages, setRandom, random, loading, error, hasMore } = usePhotos(
     query,
     page
   );
@@ -43,7 +43,6 @@ function App() {
     e.preventDefault();
     setRandom(false);
     setPickedImg(null);
-
     setImages([]);
     setQuery(input);
     setPage(1);
@@ -70,8 +69,10 @@ function App() {
           onSearchSubmit={onSearchSubmit}
           input={input}
           setRandom={setRandom}
+          random={random}
+          setPickedImg={setPickedImg}
+          setPage={setPage}
         />
-        {console.log(images)}
         <Board
           pins={images}
           setPickedImg={setPickedImg}
@@ -79,6 +80,7 @@ function App() {
           loading={loading}
           error={error}
           hasMore={hasMore}
+          random={random}
         />
       </PinContext.Provider>
       <Toast toast={toast} setToast={setToast} />

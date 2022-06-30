@@ -16,6 +16,7 @@ const usePhotos = (query, page) => {
   const [random, setRandom] = useState(true);
 
   useEffect(() => {
+    console.log(random)
     if (!random) {
       client
         .get("/search/photos", {
@@ -29,7 +30,7 @@ const usePhotos = (query, page) => {
             throw Error("Brak podanej frazy w bazie");
           }
           setImages((prev) => {
-            return [...prev, ...res.data.results];
+            return [...new Set([...prev, ...res.data.results])];
           });
           setHasMore(res.data.results.length > 0);
           setLoading(false);
@@ -41,14 +42,14 @@ const usePhotos = (query, page) => {
     } else {
       client
         .get("/photos/random", {
-          params: { count: 2 },
+          params: { count: 20 },
         })
         .then((res) => {
           if (!res.statusText === "OK") {
             throw Error("Nie możemy pobrać danych z tego źródła");
           }
           setImages((prev) => {
-            return [...prev, ...res.data];
+            return [...new Set([...prev, ...res.data])];
           });
           setLoading(false);
         })
@@ -57,8 +58,9 @@ const usePhotos = (query, page) => {
           setError(err.message);
         });
     }
+    console.log(page)
   }, [random, query, page]);
-  return { images, setImages, setRandom, loading, error, hasMore };
+  return { images, setImages, setRandom, random, loading, error, hasMore };
 };
 
 export default usePhotos;
