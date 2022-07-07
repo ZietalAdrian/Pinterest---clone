@@ -2,49 +2,43 @@ import React, { useEffect, useState } from "react";
 import { FiUpload } from "react-icons/fi";
 import { BsThreeDots } from "react-icons/bs";
 import { AiFillMeh } from "react-icons/ai";
+import env from "react-dotenv";
+
 import AuthenticationBoard from "./AuthenticationBoard";
 
 const Pin = ({
-  obj,
+  pinObj,
   handleOnSearchTag,
-  onOpen,
+  handleOnClickOpenModalSingIn,
   modal,
-  setModal,
   login,
   setLogin,
-  setToast,
+  openToast,
+  closeModal
 }) => {
-  const {
-    alt,
-    urls,
-    alt_description,
-    user,
-    tags,
-    description,
-  } = obj;
+  const { alt, urls, alt_description, user, tags, description } = pinObj;
 
   const [scroll, setScroll] = useState(false);
 
-  const showTags = () => {
-    const tagsToShow = tags.map((tag, index) => {
-      return (
-        <div
-          key={index}
-          onClick={() => handleOnSearchTag(tag.title)}
-          className="bg-gray-200 rounded-xl px-2 py-1 mr-1 cursor-pointer font-semibold text-xs hover:text-gray-500 capitalize"
-        >
-          <span className="hover:underline">{tag.title}</span>
-        </div>
-      );
-    });
-    return <div className="flex my-2">{tagsToShow}</div>;
-  };
+  const tagsToShow = tags?.map((tag, index) => {
+    return (
+      <div
+        key={index}
+        onClick={() => handleOnSearchTag(tag.title)}
+        className="bg-gray-200 rounded-xl px-2 py-1 mr-1 cursor-pointer font-semibold text-xs hover:text-gray-500 capitalize"
+      >
+        <span className="hover:underline">{tag.title}</span>
+      </div>
+    );
+  });
 
   useEffect(() => {
     window.scrollTo(0, 100);
   }, [scroll]);
 
-  const btnOdwiedz = () => window.open("https://unsplash.com/");
+  const handleRedirect = () => window.open("https://unsplash.com/");
+
+  const handleOnScroll = () => setScroll((prev) => !prev)
 
   return (
     <>
@@ -57,7 +51,7 @@ const Pin = ({
           />
           <div className="z-10 bg-transparent hover:bg-black/40 absolute left-0 top-0 w-full h-full rounded-2xl">
             <div
-              onClick={() => onOpen(false)}
+              onClick={handleOnClickOpenModalSingIn}
               className="text-[0px] hover:text-lg z-20 text-center mt-16 w-full h-full text-white"
             >
               <span className="block mx-auto w-52 font-semibold leading-6">
@@ -66,10 +60,10 @@ const Pin = ({
               </span>
               <AuthenticationBoard
                 open={modal}
-                onClose={() => setModal(false)}
+                onClose={closeModal}
                 login={login}
                 setLogin={setLogin}
-                setToast={setToast}
+                openToast={openToast}
               />
             </div>
           </div>
@@ -86,7 +80,7 @@ const Pin = ({
             </div>
             <div className="flex">
               <button
-                onClick={btnOdwiedz}
+                onClick={handleRedirect}
                 className="bg-gray-200 rounded-3xl p-3 tracking-wider mr-2 font-semibold"
               >
                 Odwiedź
@@ -99,7 +93,7 @@ const Pin = ({
           <div className="flex flex-col m-3">
             <span className="font-light text-sm">
               Artykuł z{" "}
-              <a href="https://unsplash.com/" className="font-bold">
+              <a href={env.UNSPLASH_URL} className="font-bold">
                 unsplash.com
               </a>
             </span>
@@ -112,7 +106,7 @@ const Pin = ({
                     className="w-full h-full rounded-full"
                     src={user?.profile_image.medium}
                     alt=""
-                    onLoad={() => setScroll((prev) => !prev)}
+                    onLoad={handleOnScroll}
                   />
                 ) : (
                   <span className="text-6xl">
@@ -127,7 +121,7 @@ const Pin = ({
                 <span className="font-light leading-5">5tys. oberwujących</span>
               </div>
             </div>
-            {tags && showTags()}
+            {tags && <div className="flex my-2 max-h-6">{tagsToShow}</div>}
             <button className="flex my-3 font-semibold text-xs">
               Więcej informacji...
             </button>

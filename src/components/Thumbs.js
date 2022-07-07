@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+
 import { PinContext } from "../context/PinContext";
+
 import PinThumb from "./PinThumb";
 
 const Thumbs = ({ clickedPin, handleOnSearchTag }) => {
@@ -7,12 +9,12 @@ const Thumbs = ({ clickedPin, handleOnSearchTag }) => {
 
   return (
     <div className="gap-3 mt-6 mx-2 px-20 columns-5">
-      {pins.map((obj, index) => {
+      {pins.map((pinObj, index) => {
         return (
           <PinThumb
             handleOnSearchTag={handleOnSearchTag}
             key={index}
-            obj={obj}
+            pinObj={pinObj}
             clickedPin={clickedPin}
           />
         );

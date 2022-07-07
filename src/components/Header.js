@@ -2,53 +2,37 @@ import React, { useContext } from "react";
 import { BsPinterest } from "react-icons/bs";
 import { GrFormSearch } from "react-icons/gr";
 import { RiArrowDownSLine } from "react-icons/ri";
-import AuthenticationBoard from "./AuthenticationBoard";
+
 import { PinContext } from "../context/PinContext";
+
+import AuthenticationBoard from "./AuthenticationBoard";
 
 const Header = ({
   onSearchSubmit,
   input,
-  setRandom,
-  setPickedImg,
-  random,
-  setPage,
+  openModal,
+  closeModal,
+  openToast,
+  handleOnClickOpenModalLogin,
+  handleOnClickOpenModalSingIn,
 }) => {
-  const {
-    setInput,
-    onOpen,
-    modal,
-    setModal,
-    login,
-    setLogin,
-    setToast,
-    setImages,
-  } = useContext(PinContext);
-
-  const HomePage = () => {
-    setImages([]);
-    setPickedImg(null);
-    setInput("")
-    if (!random) {
-      setRandom(true);
-    } else {
-      setPage(2);
-    }
-  };
+  const { setInput, modal, login } = useContext(PinContext);
 
   return (
     <div className="flex flex-col">
       <div className="flex m-4 items-center">
         <span>
-          <button
-            onClick={HomePage}
-            className="mx-2 cursor-pointer flex text-[#C8232C] font-semibold tracking-tight text-xl pb-1"
-          >
-            <BsPinterest size={25} color="#F00028" className="mr-1 pb-0" />
-            Pinterest
-          </button>
+          <a href="/">
+            <button
+              className="mx-2 cursor-pointer flex text-[#C8232C] font-semibold tracking-tight text-xl pb-1"
+            >
+              <BsPinterest size={25} color="#F00028" className="mr-1 pb-0" />
+              Pinterest
+            </button>
+          </a>
         </span>
         <button
-          onClick={() => setToast(true)}
+          onClick={openToast}
           className="cursor-pointer h-min px-2 py-1 rounded-lg hover:bg-gray-200"
         >
           <span className="font-semibold">Odkrywaj</span>
@@ -72,39 +56,35 @@ const Header = ({
         </div>
         <div className="flex min-w-fit ml-auto">
           <div className="mr-2 cursor-pointer p-3 rounded-3xl hover:bg-gray-200">
-            <button
-              onClick={() => onOpen(true)}
-              className="tracking-wide font-semibold"
-            >
+            <button onClick={openModal} className="tracking-wide font-semibold">
               Zaloguj się
             </button>
             <AuthenticationBoard
               open={modal}
-              onClose={() => setModal(false)}
+              onClose={closeModal}
               login={login}
-              setLogin={setLogin}
-              setToast={setToast}
+              openToast={openToast}
+              handleOnClickOpenModalLogin={handleOnClickOpenModalLogin}
+              handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
             />
           </div>
           <span className="bg-gray-200 rounded-3xl py-3 px-4 cursor-pointer hover:bg-gray-300 tracking-wide">
             <button
-              onClick={() => onOpen(false)}
+              onClick={handleOnClickOpenModalSingIn}
               className="tracking-wide font-semibold"
             >
               Zarejestruj się
             </button>
             <AuthenticationBoard
               open={modal}
-              onClose={() => setModal(false)}
+              onClose={closeModal}
               login={login}
-              setLogin={setLogin}
-              setToast={setToast}
+              openToast={openToast}
+              handleOnClickOpenModalLogin={handleOnClickOpenModalLogin}
+              handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
             />
           </span>
-          <button
-            onClick={() => setToast(true)}
-            className="text-2xl2 ml-2 cursor-pointer"
-          >
+          <button onClick={openToast} className="text-2xl2 ml-2 cursor-pointer">
             <span>
               <RiArrowDownSLine />
             </span>

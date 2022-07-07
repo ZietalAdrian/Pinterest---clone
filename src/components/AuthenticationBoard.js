@@ -2,11 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+
 import Login from "./Login";
 import SignIn from "./SignIn";
 
 
-const AuthenticationBoard = ({ open, onClose, login, setLogin,setToast }) => {
+const AuthenticationBoard = ({ open, onClose, login, openToast,handleOnClickOpenModalLogin, handleOnClickOpenModalSingIn }) => {
 
   const formik = useFormik({
     initialValues: {
@@ -40,7 +41,7 @@ const AuthenticationBoard = ({ open, onClose, login, setLogin,setToast }) => {
       // age: Yup.number().required().positive().integer(),
     }),
     onSubmit: () => {
-      setToast(true);
+      openToast();
     },
   });
 
@@ -54,18 +55,16 @@ const AuthenticationBoard = ({ open, onClose, login, setLogin,setToast }) => {
       {login ? (
         <Login
           onClose={onClose}
-          login={login}
-          setLogin={setLogin}
           formik={formik}
-          setToast={setToast}
+          openToast={openToast}
+          handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
         />
       ) : (
         <SignIn
           onClose={onClose}
-          login={login}
-          setLogin={setLogin}
           formik={formik}
-          setToast={setToast}
+          openToast={openToast}
+          handleOnClickOpenModalLogin={handleOnClickOpenModalLogin}
         />
       )}
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { AiFillMeh } from "react-icons/ai";
 
-const PinThumb = ({ obj, clickedPin, handleOnSearchTag }) => {
-  const { id, urls, user, tags, description } = obj;
+const PinThumb = ({ pinObj, clickedPin, handleOnSearchTag }) => {
+  const { id, urls, user, tags, description } = pinObj;
 
   const handleOnClick = () => {
     clickedPin(id);
@@ -25,7 +25,7 @@ const PinThumb = ({ obj, clickedPin, handleOnSearchTag }) => {
 
   return (
     <div
-      className={`flex flex-col rounded-xl cursor-pointer mt-3 first:mt-0`}
+      className={`flex flex-col flex-nowrap rounded-xl cursor-pointer mt-3 first:mt-0`}
     >
       <div className="mb-1">
         <img

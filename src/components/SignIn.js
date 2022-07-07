@@ -4,8 +4,10 @@ import { CgClose } from "react-icons/cg";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 
-const SignIn = ({ onClose, formik, setLogin, setToast }) => {
+const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => {
   const [isFields, setIsFields] = useState(false);
+
+  const showField = () => setIsFields(true)
 
   return (
     <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white z-50 h-screen w-[484px] rounded-[2.2rem] overflow-auto pb-4">
@@ -29,7 +31,7 @@ const SignIn = ({ onClose, formik, setLogin, setToast }) => {
             <button
               type="button"
               className="bg-[#F00028] text-white p-2 rounded-3xl my-3"
-              onClick={() => setIsFields(true)}
+              onClick={showField}
             >
               <span className="block leading-5 font-semibold">
                 Kontunuuj przy użyciu adresu e-mail
@@ -94,7 +96,7 @@ const SignIn = ({ onClose, formik, setLogin, setToast }) => {
           )}
           <button
             type="button"
-            onClick={() => setToast(true)}
+            onClick={openToast}
             className="p-1 mb-2 max-h-10 bg-blue-500 text-white rounded-3xl font-bold truncate flex"
           >
             <span className="pl-1 pt-1">
@@ -104,7 +106,7 @@ const SignIn = ({ onClose, formik, setLogin, setToast }) => {
           </button>
           <button
             type="button"
-            onClick={() => setToast(true)}
+            onClick={openToast}
             className="p-2 rounded-3xl truncate border-[1px] text-sm font-medium flex border-gray-300"
           >
             <span className="px-1">
@@ -128,7 +130,7 @@ const SignIn = ({ onClose, formik, setLogin, setToast }) => {
       <div className="text-center flex flex-col font-semibold text-xs mt-8">
         <button
           type="button"
-          onClick={() => setLogin(true)}
+          onClick={handleOnClickOpenModalLogin}
           className="font-semibold text-xs mb-3"
         >
           Masz już konto? Zaloguj się

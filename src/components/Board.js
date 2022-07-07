@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
+
 import { PinContext } from "../context/PinContext";
+
 import Pin from "./Pin";
 import Thumbs from "./Thumbs";
 
@@ -11,15 +13,15 @@ const Board = ({
   error,
   hasMore,
   random,
+  openModal,
+  closeModal,
+  openToast,
+  handleOnClickOpenModalSingIn,
 }) => {
   const { setInput, setImages, setQuery, setPage } = useContext(PinContext);
 
   const clickedPin = (id) => {
-    setPickedImg(
-      pins.find((photo) => {
-        return photo.id === id;
-      })
-    );
+    setPickedImg(pins.find((photo) => photo.id === id));
   };
   const handleOnSearchTag = (tag) => {
     setInput("");
@@ -32,7 +34,14 @@ const Board = ({
   return (
     <>
       {pickedImg && (
-        <Pin obj={pickedImg} handleOnSearchTag={handleOnSearchTag} />
+        <Pin
+          pinObj={pickedImg}
+          handleOnSearchTag={handleOnSearchTag}
+          openModal={openModal}
+          closeModal={closeModal}
+          openToast={openToast}
+          handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
+        />
       )}
       <Thumbs
         clickedPin={clickedPin}

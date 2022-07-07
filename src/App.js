@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import "./App.css";
+
 import Board from "./components/Board";
 import Header from "./components/Header";
-import usePhotos from "./usePhotos";
+import useApi from "./API/useApi";
 import Toast from "./components/Toast";
 import { PinContext } from "./context/PinContext";
 
@@ -13,10 +13,9 @@ function App() {
   const [toast, setToast] = useState(false);
   const [modal, setModal] = useState(false);
   const [login, setLogin] = useState(true);
-
   const [pickedImg, setPickedImg] = useState(null);
 
-  const { images, setImages, setRandom, random, loading, error, hasMore } = usePhotos(
+  const { images, setImages, setRandom, random, loading, error, hasMore } = useApi(
     query,
     page
   );
@@ -34,10 +33,14 @@ function App() {
     window.addEventListener("scroll", handleScroll);
   });
 
-  const onOpen = (bool) => {
+  const openModal = (isLoginModal) => {
     setModal(true);
-    setLogin(bool);
+    setLogin(isLoginModal);
   };
+  const handleOnClickOpenModalLogin = () => openModal(true)
+  const handleOnClickOpenModalSingIn = () => openModal(false)
+  const closeModal = () => setModal(false)
+  const openToast = () => setToast(true)
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
@@ -57,21 +60,18 @@ function App() {
           setPage,
           setImages,
           setInput,
-          onOpen,
           modal,
-          setModal,
           login,
-          setLogin,
-          setToast,
         }}
       >
         <Header
           onSearchSubmit={onSearchSubmit}
           input={input}
-          setRandom={setRandom}
-          random={random}
-          setPickedImg={setPickedImg}
-          setPage={setPage}
+          openModal={openModal}
+          closeModal={closeModal}
+          openToast={openToast}
+          handleOnClickOpenModalLogin={handleOnClickOpenModalLogin}
+          handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
         />
         <Board
           pins={images}
@@ -81,6 +81,9 @@ function App() {
           error={error}
           hasMore={hasMore}
           random={random}
+          closeModal={closeModal}
+          openToast={openToast}
+          handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
         />
       </PinContext.Provider>
       <Toast toast={toast} setToast={setToast} />

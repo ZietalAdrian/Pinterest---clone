@@ -4,7 +4,7 @@ import { CgClose } from "react-icons/cg";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 
-const Login = ({ onClose, formik, setLogin, setToast }) => {
+const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => {
 
   return (
     <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white z-50 h-screen w-[484px] rounded-[2.2rem] overflow-auto pb-4">
@@ -65,7 +65,7 @@ const Login = ({ onClose, formik, setLogin, setToast }) => {
           <span className="text-center text-sm font-semibold my-4">LUB</span>
           <button
             type="button"
-            onClick={() => setToast(true)}
+            onClick={openToast}
             className="p-2 pb-3 mb-2 max-h-10 bg-blue-500 text-white rounded-3xl font-bold truncate flex"
           >
             <span className="pl-1">
@@ -75,7 +75,7 @@ const Login = ({ onClose, formik, setLogin, setToast }) => {
           </button>
           <button
             type="button"
-            onClick={() => setToast(true)}
+            onClick={openToast}
             className="p-2 rounded-3xl truncate border-[1px] text-sm font-medium flex border-blue-200 bg-blue-50"
           >
             <span className="px-1">
@@ -100,7 +100,7 @@ const Login = ({ onClose, formik, setLogin, setToast }) => {
       <div className="text-center flex flex-col font-semibold text-xs">
         <button
           type="button"
-          onClick={() => setLogin(false)}
+          onClick={handleOnClickOpenModalSingIn}
           className="font-semibold text-xs mb-3"
         >
           Nie ma Cię jeszcze na Pintereście ? Zarejestruj się
