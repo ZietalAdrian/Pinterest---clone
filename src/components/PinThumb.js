@@ -8,20 +8,17 @@ const PinThumb = ({ pinObj, clickedPin, handleOnSearchTag }) => {
     clickedPin(id);
   };
 
-  const showTags = () => {
-    const tagsToShow = tags.map((tag, index) => {
-      return (
-        <div
-          key={index}
-          onClick={() => handleOnSearchTag(tag.title)}
-          className="bg-gray-200 rounded-xl px-2 py-1 mr-1 cursor-pointer font-semibold text-xs hover:text-gray-500 capitalize max-h-6 truncate"
-        >
-          <span className="hover:underline">{tag.title}</span>
-        </div>
-      );
-    });
-    return <div className="flex my-2 max-h-6">{tagsToShow}</div>;
-  };
+  const tagsToShow = tags?.map((tag, index) => {
+    return (
+      <div
+        key={index}
+        onClick={() => handleOnSearchTag(tag.title)}
+        className="bg-gray-200 rounded-xl px-2 py-1 mr-1 cursor-pointer font-semibold text-xs hover:text-gray-500 capitalize max-h-6 truncate"
+      >
+        <span className="hover:underline">{tag.title}</span>
+      </div>
+    );
+  });
 
   return (
     <div
@@ -35,7 +32,7 @@ const PinThumb = ({ pinObj, clickedPin, handleOnSearchTag }) => {
           alt=""
         />
       </div>
-      {tags && showTags()}
+      {tags && <div className="flex my-2 max-h-6">{tagsToShow}</div>}
       {description && (
         <span className="text-xs block">{`${description.substring(
           0,

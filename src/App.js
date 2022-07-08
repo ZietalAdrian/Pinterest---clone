@@ -15,10 +15,8 @@ function App() {
   const [login, setLogin] = useState(true);
   const [pickedImg, setPickedImg] = useState(null);
 
-  const { images, setImages, setRandom, random, loading, error, hasMore } = useApi(
-    query,
-    page
-  );
+  const { images, setImages, setRandom, random, loading, error, hasMore } =
+    useApi(query, page);
 
   const handleScroll = (e) => {
     if (
@@ -37,10 +35,10 @@ function App() {
     setModal(true);
     setLogin(isLoginModal);
   };
-  const handleOnClickOpenModalLogin = () => openModal(true)
-  const handleOnClickOpenModalSingIn = () => openModal(false)
-  const closeModal = () => setModal(false)
-  const openToast = () => setToast(true)
+  const handleOnClickOpenModalLogin = () => openModal(true);
+  const handleOnClickOpenModalSingIn = () => openModal(false);
+  const closeModal = () => setModal(false);
+  const openToast = () => setToast(true);
 
   const onSearchSubmit = (e) => {
     e.preventDefault();

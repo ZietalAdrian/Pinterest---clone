@@ -23,9 +23,7 @@ const Header = ({
       <div className="flex m-4 items-center">
         <span>
           <a href="/">
-            <button
-              className="mx-2 cursor-pointer flex text-[#C8232C] font-semibold tracking-tight text-xl pb-1"
-            >
+            <button className="mx-2 cursor-pointer flex text-[#C8232C] font-semibold tracking-tight text-xl pb-1">
               <BsPinterest size={25} color="#F00028" className="mr-1 pb-0" />
               Pinterest
             </button>

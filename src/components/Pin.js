@@ -14,7 +14,7 @@ const Pin = ({
   login,
   setLogin,
   openToast,
-  closeModal
+  closeModal,
 }) => {
   const { alt, urls, alt_description, user, tags, description } = pinObj;
 
@@ -36,9 +36,9 @@ const Pin = ({
     window.scrollTo(0, 100);
   }, [scroll]);
 
-  const handleRedirect = () => window.open("https://unsplash.com/");
+  const handleRedirect = () => window.open(env.UNSPLASH_URL);
 
-  const handleOnScroll = () => setScroll((prev) => !prev)
+  const handleOnScroll = () => setScroll((prev) => !prev);
 
   return (
     <>
