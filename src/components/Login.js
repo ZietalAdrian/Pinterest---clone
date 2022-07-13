@@ -3,6 +3,7 @@ import { BsPinterest } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
+import { t } from "i18next";
 
 const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => {
 
@@ -17,7 +18,7 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
         </span>
         <div className="mb-5 mx-auto text-center px-28">
           <span className="text-4xl font-medium p-1 text-gray-800 leading-10 tracking-tight">
-            Zaloguj się, aby zobaczyć więcej
+            {t("logInToSeeMore")}
           </span>
         </div>
         <form
@@ -31,7 +32,7 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            placeholder="Adres e-mail"
+            placeholder={t("email")}
             className="border-2 border-solid rounded-2xl p-3 pl-5 placeholder:font-extralight placeholder:tracking-wide border-gray-300 hover:border-gray-400 focus:outline focus:outline-blue-300 focus:outline-4 focus:border-gray-300"
           />
           {formik.touched.email && formik.errors.email && (
@@ -44,7 +45,7 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.passwordLogIn || ""}
-            placeholder="Hasło"
+            placeholder={t("passoword")}
             className="border-2 border-solid rounded-2xl p-3 mt-2 pl-5 placeholder:font-extralight placeholder:tracking-wide border-gray-300 hover:border-gray-400
             focus:outline focus:outline-blue-300 focus:outline-4 focus:border-gray-300"
           />
@@ -54,15 +55,15 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
             </p>
           )}
           <button className="text-left mt-2 font-semibold text-sm">
-            Nie pamiętasz hasła ?
+            {t("forgotPassowrd")}
           </button>
           <button
             type="submit"
             className="p-2 mt-5 bg-[#F00028] text-white rounded-3xl hover:bg-[#d81535]"
           >
-            Zaloguj się
+           {t("logIn_2")}
           </button>
-          <span className="text-center text-sm font-semibold my-4">LUB</span>
+          <span className="text-center text-sm font-semibold my-4">{t("or")}</span>
           <button
             type="button"
             onClick={openToast}
@@ -103,12 +104,12 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
           onClick={handleOnClickOpenModalSingIn}
           className="font-semibold text-xs mb-3"
         >
-          Nie ma Cię jeszcze na Pintereście ? Zarejestruj się
+          {t("notOnPinteres")}
         </button>
         <span>
-          Prowadzisz firmę?{" "}
+          {t("areYouBusiness")}{" "}
           <button type="button" className="font-semibold text-xs">
-            Rozpocznij tutaj!
+            {t("startHere")}
           </button>
         </span>
       </div>

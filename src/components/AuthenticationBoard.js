@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import Login from "./Login";
-import SignIn from "./SignIn";
+import SignUp from "./SignUp";
 
 
 const AuthenticationBoard = ({ open, onClose, login, openToast,handleOnClickOpenModalLogin, handleOnClickOpenModalSingIn }) => {
@@ -25,7 +25,7 @@ const AuthenticationBoard = ({ open, onClose, login, openToast,handleOnClickOpen
           "Czegoś tu brakuje! Nie zapomnij dodać swojego adresu e-mail."
         ),
       passwordLogIn: Yup.string().required("Required"),
-      passwordSignin: Yup.string()
+      passwordSignUp: Yup.string()
         .min(6, "Twoje hasło jest za krótkie! Musi mieć więcej niż 6 znaków.")
         .max(30, "Twoje hasło jest za długie! Może mieć maksymalnie 30 znaków.")
         .required("Required"),
@@ -60,7 +60,7 @@ const AuthenticationBoard = ({ open, onClose, login, openToast,handleOnClickOpen
           handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
         />
       ) : (
-        <SignIn
+        <SignUp
           onClose={onClose}
           formik={formik}
           openToast={openToast}

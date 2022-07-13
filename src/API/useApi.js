@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import env from "react-dotenv";
+import {t} from "i18next"
 
 const client = axios.create({
   baseURL: env.API_URL,
@@ -26,10 +27,10 @@ const useApi = (query, page) => {
         })
         .then((res) => {
           if (!res.statusText === "OK") {
-            throw Error("Nie możemy pobrać danych z tego źródła");
+            throw Error(t("weAreUnable"));
           }
           if (res.data.total <= 0) {
-            throw Error("Brak podanej frazy w bazie");
+            throw Error(t("noGivenPhrase"));
           }
           setImages((prev) => {
             return [...new Set([...prev, ...res.data.results])];
@@ -44,11 +45,12 @@ const useApi = (query, page) => {
     } else {
       client
         .get("/photos/random", {
-          params: { count: 10 },
+          // params: { count: 10 },
+          params: { count: 2 },
         })
         .then((res) => {
           if (!res.statusText === "OK") {
-            throw Error("Nie możemy pobrać danych z tego źródła");
+            throw Error(t("weAreUnable"));
           }
           setImages((prev) => {
             return [...new Set([...prev, ...res.data])];

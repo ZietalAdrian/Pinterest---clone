@@ -1,3 +1,4 @@
+import { t } from "i18next";
 import React from "react";
 import { AiFillMeh } from "react-icons/ai";
 
@@ -22,7 +23,7 @@ const PinThumb = ({ pinObj, clickedPin, handleOnSearchTag }) => {
 
   return (
     <div
-      className={`flex flex-col flex-nowrap rounded-xl cursor-pointer mt-3 first:mt-0`}
+      className={`flex flex-col rounded-xl cursor-pointer mt-3 first:mt-0`}
     >
       <div className="mb-1">
         <img
@@ -58,7 +59,7 @@ const PinThumb = ({ pinObj, clickedPin, handleOnSearchTag }) => {
             {user.username}
           </span>
           <span className="font-light leading-5 text-xs">
-            5tys. oberwujących
+            5tys. {t("followers")}
           </span>
         </div>
       </div>

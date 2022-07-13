@@ -5,6 +5,7 @@ import { AiFillMeh } from "react-icons/ai";
 import env from "react-dotenv";
 
 import AuthenticationBoard from "./AuthenticationBoard";
+import { t } from "i18next";
 
 const Pin = ({
   pinObj,
@@ -83,16 +84,16 @@ const Pin = ({
                 onClick={handleRedirect}
                 className="bg-gray-200 rounded-3xl p-3 tracking-wider mr-2 font-semibold"
               >
-                Odwiedź
+                {t("visit")}
               </button>
               <button className="text-white bg-red-600 rounded-3xl p-3 tracking-wider font-medium">
-                Zapisz
+                {t("save")}
               </button>
             </div>
           </div>
           <div className="flex flex-col m-3">
             <span className="font-light text-sm">
-              Artykuł z{" "}
+              {t("articleFrom")}{" "}
               <a href={env.UNSPLASH_URL} className="font-bold">
                 unsplash.com
               </a>
@@ -118,18 +119,18 @@ const Pin = ({
                 <span className="font-medium leading-5 cursor-pointer">
                   {user?.username}
                 </span>
-                <span className="font-light leading-5">5tys. oberwujących</span>
+                <span className="font-light leading-5">5tys. {t("followers")}</span>
               </div>
             </div>
             {tags && <div className="flex my-2 max-h-6">{tagsToShow}</div>}
             <button className="flex my-3 font-semibold text-xs">
-              Więcej informacji...
+              {t("moreInfo")}
             </button>
           </div>
         </div>
       </div>
       <span className="block text-center font-semibold text-xl">
-        Więcej w tym stylu
+        {t("moreLikeThis")}
       </span>
     </>
   );

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { t } from "i18next";
 
 import { PinContext } from "../context/PinContext";
 
@@ -48,10 +49,10 @@ const Board = ({
         setPickedImg={setPickedImg}
         handleOnSearchTag={handleOnSearchTag}
       />
-      <div className="text-center pt-5 text-3xl">{loading && "Loading..."}</div>
+      <div className="text-center pt-5 text-3xl">{loading && t("loading")}</div>
       <div className="text-center pt-5 text-3xl">{error && error}</div>
       <div className="text-center pt-5 text-3xl my-10">
-        {!hasMore && !random && "To już koniec Pinów tej kategorii"}
+        {!hasMore && !random && t("endOfPins")}
       </div>
     </>
   );

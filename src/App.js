@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
 import Board from "./components/Board";
 import Header from "./components/Header";
@@ -17,6 +18,12 @@ function App() {
 
   const { images, setImages, setRandom, random, loading, error, hasMore } =
     useApi(query, page);
+
+  const { i18n } = useTranslation();
+
+  const changeLang = (language) => {
+    return () => i18n.changeLanguage(language);
+  };
 
   const handleScroll = (e) => {
     if (
@@ -70,6 +77,7 @@ function App() {
           openToast={openToast}
           handleOnClickOpenModalLogin={handleOnClickOpenModalLogin}
           handleOnClickOpenModalSingIn={handleOnClickOpenModalSingIn}
+          changeLang={changeLang}
         />
         <Board
           pins={images}

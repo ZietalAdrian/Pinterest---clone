@@ -3,8 +3,9 @@ import { BsPinterest } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import { RiFacebookCircleFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
+import { t } from "i18next";
 
-const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => {
+const SignUp = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => {
   const [isFields, setIsFields] = useState(false);
 
   const showField = () => setIsFields(true)
@@ -20,12 +21,12 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
         </span>
         <div className="mx-auto text-center">
           <span className="text-4xl font-medium p-1 text-gray-800 leading-10 tracking-tight">
-            Nieograniczony, bezpłatny dostęp do najlepszych pomysłów na świecie
+            {t("unlimitedAccess")}
           </span>
         </div>
         <div className={`flex flex-col px-10 text-center font-light`}>
           <span className="leading-5 mb-5 px-5">
-            Zarejestruj się, aby zobaczyć więcej
+            {t("signUpToSeeMore")}
           </span>
           {!isFields ? (
             <button
@@ -34,7 +35,7 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
               onClick={showField}
             >
               <span className="block leading-5 font-semibold">
-                Kontunuuj przy użyciu adresu e-mail
+                {t("continueWithEmail")}
               </span>
             </button>
           ) : (
@@ -46,7 +47,7 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-                placeholder="Adres e-mail"
+                placeholder={t("email")}
                 className={`border-2 border-solid rounded-2xl p-1 pl-5 mb-1 placeholder:font-extralight placeholder:tracking-wide border-gray-300 hover:border-gray-400 focus:outline focus:outline-blue-300 focus:outline-4 focus:border-gray-300`}
               />
               {formik.touched.email && formik.errors.email ? (
@@ -56,18 +57,18 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
               ):null}
               <input
                 type="password"
-                id="passwordSignin"
-                name="passwordSignin"
+                id="passwordSignUp"
+                name="passwordSignUp"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                value={formik.values.passwordSignin || ""}
-                placeholder="Utwórz hasło"
+                value={formik.values.passwordSignUp || ""}
+                placeholder={t("createPassword")}
                 className="border-2 border-solid rounded-2xl p-1 pl-5 mb-1 placeholder:font-extralight placeholder:tracking-wide border-gray-300 hover:border-gray-400 focus:outline focus:outline-blue-300 focus:outline-4 focus:border-gray-300"
               />
-              {formik.touched.passwordSignin &&
-                formik.errors.passwordSignin && (
+              {formik.touched.passwordSignUp &&
+                formik.errors.passwordSignUp && (
                   <p className="text-red-600 text-xs pl-1 pb-2 text-left">
-                    {formik.errors.passwordSignin}
+                    {formik.errors.passwordSignUp}
                   </p>
                 )}
               <input
@@ -77,7 +78,7 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.age || ""}
-                placeholder="Wiek"
+                placeholder={t("age")}
                 className="border-2 border-solid rounded-2xl p-1 pl-5 mb-1 placeholder:font-extralight placeholder:tracking-wide border-gray-300 hover:border-gray-400 focus:outline focus:outline-blue-300 focus:outline-4 focus:border-gray-300"
               />
               {formik.touched.age && formik.errors.age && (
@@ -89,7 +90,7 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
                 type="submit"
                 className="p-1 mt-2 bg-[#F00028] text-white rounded-3xl font-semibold hover:bg-[#d81535]"
               >
-                Kontynuuj
+                {t("continue")}
               </button>
               <span className="my-3 font-semibold text-sm">LUB</span>
             </form>
@@ -133,12 +134,12 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
           onClick={handleOnClickOpenModalLogin}
           className="font-semibold text-xs mb-3"
         >
-          Masz już konto? Zaloguj się
+          {t("alreadyMember")}
         </button>
         <span>
-          Prowadzisz firmę?{" "}
+         {t("areYouBusiness")}{" "}
           <button type="button" className="font-semibold text-xs">
-            Rozpocznij tutaj!
+            {t("startHere")}
           </button>
         </span>
       </div>
@@ -146,4 +147,4 @@ const SignIn = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
   );
 };
 
-export default SignIn;
+export default SignUp;
