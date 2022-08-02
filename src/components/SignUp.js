@@ -5,13 +5,18 @@ import { RiFacebookCircleFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 import { t } from "i18next";
 
-const SignUp = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => {
+const SignUp = ({
+  onClose,
+  formik,
+  openToast,
+  handleOnClickOpenModalLogin,
+}) => {
   const [isFields, setIsFields] = useState(false);
 
-  const showField = () => setIsFields(true)
+  const showField = () => setIsFields(true);
 
   return (
-    <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white z-50 h-screen w-[484px] rounded-[2.2rem] overflow-auto pb-4">
+    <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white z-50 min-h-[85vh] w-[484px] rounded-[2.2rem] overflow-auto pb-4">
       <button onClick={onClose} className="absolute top-6 right-6 text-xl">
         <CgClose size={25} strokeWidth={1.4} />
       </button>
@@ -25,9 +30,7 @@ const SignUp = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
           </span>
         </div>
         <div className={`flex flex-col px-10 text-center font-light`}>
-          <span className="leading-5 mb-5 px-5">
-            {t("signUpToSeeMore")}
-          </span>
+          <span className="leading-5 mb-5 px-5">{t("signUpToSeeMore")}</span>
           {!isFields ? (
             <button
               type="button"
@@ -54,7 +57,7 @@ const SignUp = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
                 <p className="text-red-600 text-xs pl-1 pb-2 text-left">
                   {formik.errors.email}
                 </p>
-              ):null}
+              ) : null}
               <input
                 type="password"
                 id="passwordSignUp"
@@ -103,7 +106,7 @@ const SignUp = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
             <span className="pl-1 pt-1">
               <RiFacebookCircleFill size={25} />
             </span>
-            Kontunuuj przy użyciu Facebooka
+            {t("continueFacebook")}
           </button>
           <button
             type="button"
@@ -113,18 +116,18 @@ const SignUp = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
             <span className="px-1">
               <FcGoogle size={22} />
             </span>
-            Kontunuuj przy użyciu konta Google
+            {t("continueGoogle")}
           </button>
           <p className="mt-4 text-center text-xs font-thin">
-            Kontynuując, wyrażasz zgodę na warunki opisane w dokumencie{" "}
+            {t("terms_1")}{" "}
             <span className="cursor-pointer hover:underline font-semibold">
-              Warunki korzystania z serwisu
+              {t("terms_2")}
             </span>{" "}
-            i potwierdzasz zapoznanie się z dokumentem{" "}
+            {t("terms_3")}{" "}
             <span className="cursor-pointer hover:underline font-semibold">
-              Polityka prywatności
+              {t("terms_4")}
             </span>{" "}
-            Pinteresta
+            {t("terms_5")}
           </p>
         </div>
       </div>
@@ -137,7 +140,7 @@ const SignUp = ({ onClose, formik, openToast, handleOnClickOpenModalLogin }) => 
           {t("alreadyMember")}
         </button>
         <span>
-         {t("areYouBusiness")}{" "}
+          {t("areYouBusiness")}{" "}
           <button type="button" className="font-semibold text-xs">
             {t("startHere")}
           </button>

@@ -34,6 +34,8 @@
     "endOfPins":"To już koniec Pinów tej kategorii",
     "weAreUnable":"Nie możemy pobrać danych z tego źródła",
     "noGivenPhrase":"Brak podanej frazy w bazie",
-    "maybeNextTime":"Może następnym razem"
+    "maybeNextTime":"Może następnym razem",
+    "continueFacebook":"Kontunuuj przy użyciu Facebooka",
+    "continueGoogle":"Kontunuuj przy użyciu konta Google"
 
 } 

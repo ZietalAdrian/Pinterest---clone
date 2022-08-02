@@ -5,8 +5,12 @@ import { RiFacebookCircleFill } from "react-icons/ri";
 import { FcGoogle } from "react-icons/fc";
 import { t } from "i18next";
 
-const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => {
-
+const Login = ({
+  onClose,
+  formik,
+  openToast,
+  handleOnClickOpenModalSingIn,
+}) => {
   return (
     <div className="fixed top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] bg-white z-50 h-screen w-[484px] rounded-[2.2rem] overflow-auto pb-4">
       <button onClick={onClose} className="absolute top-6 right-6 text-xl">
@@ -61,9 +65,11 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
             type="submit"
             className="p-2 mt-5 bg-[#F00028] text-white rounded-3xl hover:bg-[#d81535]"
           >
-           {t("logIn_2")}
+            {t("logIn_2")}
           </button>
-          <span className="text-center text-sm font-semibold my-4">{t("or")}</span>
+          <span className="text-center text-sm font-semibold my-4">
+            {t("or")}
+          </span>
           <button
             type="button"
             onClick={openToast}
@@ -72,7 +78,7 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
             <span className="pl-1">
               <RiFacebookCircleFill size={25} />
             </span>
-            Kontynuuj przy użyciu Facebook{" "}
+            {t("continueFacebook")}{" "}
           </button>
           <button
             type="button"
@@ -82,18 +88,18 @@ const Login = ({ onClose, formik, openToast, handleOnClickOpenModalSingIn }) => 
             <span className="px-1">
               <FcGoogle size={22} />
             </span>
-            Kontynuuj przy użyciu konta Google{" "}
+            {t("continueGoogle")}{" "}
           </button>
           <p className="mt-4 text-center text-xs font-thin">
-            Kontynuując, wyrażasz zgodę na warunki opisane w dokumencie{" "}
+            {t("terms_1")}{" "}
             <span className="cursor-pointer hover:underline font-semibold">
-              Warunki korzystania z serwisu
+              {t("terms_2")}
             </span>{" "}
-            i potwierdzasz zapoznanie się z dokumentem{" "}
+            {t("terms_3")}{" "}
             <span className="cursor-pointer hover:underline font-semibold">
-              Polityka prywatności
+              {t("terms_4")}
             </span>{" "}
-            Pinteresta
+            {t("terms_5")}
           </p>
         </form>
         <span className="border-b-[1px] w-1/2 my-2 mx-auto"></span>

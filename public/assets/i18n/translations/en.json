@@ -34,6 +34,7 @@
     "endOfPins":"This is the end of Pins in this category",
     "weAreUnable":"We are unable to retrieve data from this source",
     "noGivenPhrase":"No given phrase in the database",
-    "maybeNextTime":"Maybe next time"
-
+    "maybeNextTime":"Maybe next time",
+    "continueFacebook":"Continue using Facebook",
+    "continueGoogle":"Continue using Google account"
 } 
